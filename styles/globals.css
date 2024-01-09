@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@300;400;500;600&family=Martel:wght@400;600&family=Quicksand:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+body {
+  font-family: Quicksand,sans-serif;
+  background: #FDFCFF;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+}
+
+g.highcharts-axis.highcharts-xaxis {
+  display: none;
+}
