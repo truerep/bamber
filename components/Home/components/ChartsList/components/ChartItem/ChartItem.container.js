@@ -55,6 +55,8 @@ const ChartItemContainer = ({
       title: {
         text: ''
       },
+      // min: Math.min(...dataPoints),
+      // max: Math.max(...dataPoints),
       labels: {
         style: {
           fontSize: '10px',
@@ -81,6 +83,7 @@ const ChartItemContainer = ({
       },
       data: dataPoints,
       color: colorShade,
+      threshold: null,
       fillColor: {
         linearGradient: {x1: 0, x2: 0, y1: 0, y2: 1},
         stops: [
