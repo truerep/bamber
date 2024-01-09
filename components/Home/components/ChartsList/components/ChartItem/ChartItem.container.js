@@ -1,5 +1,6 @@
 import React from 'react'
 import ChartItem from './ChartItem'
+import { getLatestPrice } from '@/api';
 
 const ChartItemContainer = ({
   chartData
@@ -30,7 +31,7 @@ const ChartItemContainer = ({
 
   const chartOptions = {
     chart: {
-      type: "areaspline",
+      type: "spline",
       height: 150,
       backgroundColor: 'transparent',
       margin: [0, 0, 0, 0],
@@ -40,9 +41,11 @@ const ChartItemContainer = ({
           const series = this.series[0];
           // const series = this.series[0];
           console.log(series, "<--series")
-          setInterval(function () { 
+          setInterval(async function async () { 
             if (series) {
-              series.addPoint(100, true, true);
+              let res = await getLatestPrice(stockName);
+              console.log(res, "<----")
+              series.addPoint(res.latestPrice, true, true);
             }
           }, 1000);
         }
@@ -91,20 +94,20 @@ const ChartItemContainer = ({
     },
     series: [{
       cursor: 'crosshair',
-      lineWidth: 1,
+      lineWidth: 2,
       marker: {
         enabled: false
       },
       data: dataPoints,
-      color: colorShade,
+      // color: colorShade,
       threshold: null,
-      fillColor: {
-        linearGradient: {x1: 0, x2: 0, y1: 0, y2: 1},
-        stops: [
-          [0, colorShade],
-          [1, '#fff0']
-        ]
-      }
+      // fillColor: {
+      //   linearGradient: {x1: 0, x2: 0, y1: 0, y2: 1},
+      //   stops: [
+      //     [0, colorShade],
+      //     [1, '#fff0']
+      //   ]
+      // }
     }]
   };
 
