@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import Highcharts from 'highcharts'
+import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
 
 const ChartItem = ({

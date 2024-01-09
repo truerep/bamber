@@ -33,7 +33,21 @@ const ChartItemContainer = ({
       type: "areaspline",
       height: 150,
       backgroundColor: 'transparent',
-      margin: [0, 0, 0, 0]
+      margin: [0, 0, 0, 0],
+
+      events: {
+        load: function () {
+          const series = this.series[0];
+          // const series = this.series[0];
+          console.log(series, "<--series")
+          setInterval(function () { 
+            if (series) {
+              series.addPoint(100, true, true);
+            }
+          }, 1000);
+        }
+      }
+
     },
     title: {
       text: '',

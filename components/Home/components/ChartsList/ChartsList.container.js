@@ -11,8 +11,8 @@ const ChartsListContainer = () => {
 
   useEffect(() => {
     getChartsData();
-    const intervalId = setInterval(getChartsData, 2000);
-    return () => clearInterval(intervalId);
+    // const intervalId = setInterval(getChartsData, 2000);
+    // return () => clearInterval(intervalId);
   }, [])
   
   return (
