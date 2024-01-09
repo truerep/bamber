@@ -4,7 +4,7 @@ import { appEnv } from '@/helpers';
 
 const getAllCharts = async () => {
   try {
-    const response = await axios.get(`${appEnv.apiUrl}/stocksdata/1000`, {});
+    const response = await axios.get(`${appEnv.apiUrl}/stocksdata/1`, {});
 
     return response.data;
   } catch (error) {
