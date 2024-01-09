@@ -40,14 +40,12 @@ const ChartItemContainer = ({
         load: function () {
           const series = this.series[0];
           // const series = this.series[0];
-          console.log(series, "<--series")
           setInterval(async function async () { 
             if (series) {
               let res = await getLatestPrice(stockName);
-              console.log(res, "<----")
               series.addPoint(res.latestPrice, true, true);
             }
-          }, 1000);
+          }, 100);
         }
       }
 
@@ -90,7 +88,7 @@ const ChartItemContainer = ({
     },
     tooltip: {
       headerFormat: '',
-      pointFormat: '<b>₹ {point.y:.0f}</b>',
+      pointFormat: '<b>₹ {point.y:.2f}</b>',
     },
     series: [{
       cursor: 'crosshair',
