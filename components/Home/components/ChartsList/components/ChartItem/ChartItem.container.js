@@ -45,7 +45,7 @@ const ChartItemContainer = ({
               let res = await getLatestPrice(stockName);
               series.addPoint(res.latestPrice, true, true);
             }
-          }, 100);
+          }, 1000);
         }
       }
 
