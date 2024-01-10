@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ChartItem from './ChartItem'
 import { getLatestPrice } from '@/api';
 
 const ChartItemContainer = ({
   chartData
 }) => {
+  const [currColor, setCurrColor] = useState('#F6465D')
   // const dummyData =[
   //   4952,
   //   6951,
@@ -23,15 +24,15 @@ const ChartItemContainer = ({
   // }
 
   let dataPoints = chartData?.data.map((data) => (data.price))
-  if (dataPoints[0] <= dataPoints[dataPoints.length - 1]) {
-    colorShade = "#70ff0f";
-  }
+  // if (dataPoints[0] <= dataPoints[dataPoints.length - 1]) {
+  //   colorShade = "#70ff0f";
+  // }
 
   let stockName = chartData.symbol;
 
   const chartOptions = {
     chart: {
-      type: "spline",
+      type: "areaspline",
       height: 150,
       backgroundColor: 'transparent',
       margin: [0, 0, 0, 0],
@@ -43,6 +44,11 @@ const ChartItemContainer = ({
           setInterval(async function async () { 
             if (series) {
               let res = await getLatestPrice(stockName);
+              if (series.data[0].y <= res.latestPrice) {
+                setCurrColor('#70ff0f')
+              } else {
+                setCurrColor('#F6465D')
+              }
               series.addPoint(res.latestPrice, true, true);
             }
           }, 1000);
@@ -97,15 +103,15 @@ const ChartItemContainer = ({
         enabled: false
       },
       data: dataPoints,
-      // color: colorShade,
+      color: currColor,
       threshold: null,
-      // fillColor: {
-      //   linearGradient: {x1: 0, x2: 0, y1: 0, y2: 1},
-      //   stops: [
-      //     [0, colorShade],
-      //     [1, '#fff0']
-      //   ]
-      // }
+      fillColor: {
+        linearGradient: {x1: 0, x2: 0, y1: 0, y2: 1},
+        stops: [
+          [0, currColor],
+          [1, '#fff0']
+        ]
+      }
     }]
   };
 
